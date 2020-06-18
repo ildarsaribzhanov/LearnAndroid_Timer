@@ -23,7 +23,7 @@
         android:orientation="vertical">
 
         <SeekBar
-            android:id="@+id/seekBar"
+            android:id="@+id/leftTimerBar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
@@ -42,7 +42,7 @@
             android:textSize="70sp" />
 
         <Button
-            android:id="@+id/button"
+            android:id="@+id/startBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/timerValue"
