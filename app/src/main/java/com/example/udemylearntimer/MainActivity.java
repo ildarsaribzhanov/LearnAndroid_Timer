@@ -37,9 +37,9 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public void onTick(long millisUntilFinished) {
             Log.d("MyTimer", String.valueOf(millisUntilFinished / 1000));
-            timerVal = Math.round(millisUntilFinished / 1000);
-            timerLeftBar.setProgress(timerVal);
-            viewTimerVal(timerVal);
+            Integer newVal = Math.round(millisUntilFinished / 1000);
+            timerLeftBar.setProgress(newVal);
+            viewTimerVal(newVal);
         }
 
         @Override
@@ -119,5 +119,7 @@ public class MainActivity extends AppCompatActivity {
         button.setText("Start");
         timerLeftBar.setEnabled(true);
         timer = null;
+        viewTimerVal(timerVal);
+        timerLeftBar.setProgress(timerVal);
     }
 }
