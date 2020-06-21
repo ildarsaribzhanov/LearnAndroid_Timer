@@ -2,6 +2,7 @@ package com.example.udemylearntimer;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.util.Log;
@@ -14,6 +15,7 @@ public class MainActivity extends AppCompatActivity {
 
     private static final int MAX_VALUE = 600;
 
+    MediaPlayer player;
     SeekBar timerLeftBar;
     Button button;
     TextView timerValueView;
@@ -43,6 +45,7 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public void onFinish() {
             Log.d("MyTimer", "Finished");
+            player.start();
             stopTimer();
         }
     }
@@ -58,6 +61,8 @@ public class MainActivity extends AppCompatActivity {
 
         button = findViewById(R.id.startBtn);
         timerValueView = findViewById(R.id.timerValue);
+        player = MediaPlayer.create(getApplicationContext(), R.raw.gong);
+
         viewTimerVal(timerVal);
 
         timerLeftBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
