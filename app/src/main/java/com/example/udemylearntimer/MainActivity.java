@@ -2,14 +2,15 @@ package com.example.udemylearntimer;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.CountDownTimer;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.SeekBar;
 import android.widget.TextView;
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -36,15 +37,13 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         public void onTick(long millisUntilFinished) {
-            Log.d("MyTimer", String.valueOf(millisUntilFinished / 1000));
-            Integer newVal = Math.round(millisUntilFinished / 1000);
+            int newVal = (int) (millisUntilFinished / 1000);
             timerLeftBar.setProgress(newVal);
             viewTimerVal(newVal);
         }
 
         @Override
         public void onFinish() {
-            Log.d("MyTimer", "Finished");
             player.start();
             stopTimer();
         }
@@ -60,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
         player = MediaPlayer.create(getApplicationContext(), R.raw.gong);
 
         timerLeftBar = findViewById(R.id.leftTimerBar);
-        timerLeftBar.setMax(this.MAX_VALUE);
+        timerLeftBar.setMax(MAX_VALUE);
         timerLeftBar.setProgress(timerVal);
 
         viewTimerVal(timerVal);
@@ -88,8 +87,9 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    @SuppressLint("SetTextI18n")
     private void viewTimerVal(Integer val) {
-        Integer minutes = Math.round(val / 60);
+        int minutes = val / 60;
         Integer seconds = val - minutes * 60;
         String minView = String.format("%1$2s", minutes).replace(' ', '0');
         String secView = String.format("%1$2s", seconds).replace(' ', '0');
@@ -108,12 +108,14 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    @SuppressLint("SetTextI18n")
     public void startTimer() {
         timer.start();
         button.setText("Stop");
         timerLeftBar.setEnabled(false);
     }
 
+    @SuppressLint("SetTextI18n")
     public void stopTimer() {
         timer.cancel();
         button.setText("Start");
