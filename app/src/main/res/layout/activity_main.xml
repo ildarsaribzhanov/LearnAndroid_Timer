@@ -54,7 +54,8 @@
             android:paddingVertical="15dp"
             android:text="START"
             android:textColor="@android:color/white"
-            android:textSize="20sp" />
+            android:textSize="20sp"
+            android:onClick="toggleTimer"/>
 
     </RelativeLayout>
 
