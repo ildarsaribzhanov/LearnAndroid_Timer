@@ -55,13 +55,13 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        timerLeftBar = findViewById(R.id.leftTimerBar);
-        timerLeftBar.setMax(this.MAX_VALUE);
-        timerLeftBar.setProgress(timerVal);
-
         button = findViewById(R.id.startBtn);
         timerValueView = findViewById(R.id.timerValue);
         player = MediaPlayer.create(getApplicationContext(), R.raw.gong);
+
+        timerLeftBar = findViewById(R.id.leftTimerBar);
+        timerLeftBar.setMax(this.MAX_VALUE);
+        timerLeftBar.setProgress(timerVal);
 
         viewTimerVal(timerVal);
 
