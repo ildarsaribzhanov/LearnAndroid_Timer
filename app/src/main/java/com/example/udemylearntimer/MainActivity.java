@@ -6,6 +6,8 @@ import android.annotation.SuppressLint;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.SeekBar;
@@ -123,5 +125,12 @@ public class MainActivity extends AppCompatActivity {
         timer = null;
         viewTimerVal(timerVal);
         timerLeftBar.setProgress(timerVal);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater menuInflater = getMenuInflater();
+        menuInflater.inflate(R.menu.timer_menu, menu);
+        return true;
     }
 }
