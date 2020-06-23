@@ -1,13 +1,16 @@
 package com.example.udemylearntimer;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.SeekBar;
@@ -131,6 +134,25 @@ public class MainActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater menuInflater = getMenuInflater();
         menuInflater.inflate(R.menu.timer_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        int id = item.getItemId();
+        Intent selectedIntent;
+
+        if (id == R.id.action_settings) {
+            selectedIntent = new Intent(this, SettingsActivity.class);
+            startActivity(selectedIntent);
+            return true;
+            
+        } else if (id == R.id.action_about) {
+            selectedIntent = new Intent(this, AboutActivity.class);
+            startActivity(selectedIntent);
+            return true;
+        }
+
         return true;
     }
 }
