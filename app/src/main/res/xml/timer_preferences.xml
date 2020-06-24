@@ -3,8 +3,14 @@
     <CheckBoxPreference
         android:defaultValue="true"
         android:key="enable_sound"
-        android:title="Enable Sound"
         android:summaryOff="Sound Disabled"
         android:summaryOn="Sound Enabled"
-        />
+        android:title="Enable Sound" />
+
+    <ListPreference
+        android:defaultValue="gong"
+        android:key="sound_file"
+        android:title="End Timer Melody"
+        android:entries="@array/preference_timer_sound_file_label"
+        android:entryValues="@array/preference_timer_sound_file_vals"/>
 </PreferenceScreen>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="preference_timer_sound_file_label">
+        <item>Bell</item>
+        <item>Bip</item>
+        <item>Gong</item>
+    </array>
+    <array name="preference_timer_sound_file_vals">
+        <item>bell</item>
+        <item>bip</item>
+        <item>gong</item>
+    </array>
+</resources>

@@ -10,6 +10,7 @@ import android.content.SharedPreferences;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -53,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public void onFinish() {
             if (preferences.getBoolean("enable_sound", true)) {
-                player.start();
+                playEnd();
             }
 
             stopTimer();
@@ -69,7 +70,6 @@ public class MainActivity extends AppCompatActivity {
 
         button = findViewById(R.id.startBtn);
         timerValueView = findViewById(R.id.timerValue);
-        player = MediaPlayer.create(getApplicationContext(), R.raw.gong);
 
         timerLeftBar = findViewById(R.id.leftTimerBar);
         timerLeftBar.setMax(MAX_VALUE);
@@ -97,7 +97,25 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+    }
 
+    void playEnd() {
+        String endMelody = preferences.getString("sound_file", "gong");
+        switch (endMelody) {
+            case "bell":
+                player = MediaPlayer.create(getApplicationContext(), R.raw.bell);
+                break;
+
+            case "bip":
+                player = MediaPlayer.create(getApplicationContext(), R.raw.bip);
+                break;
+
+            default:
+                player = MediaPlayer.create(getApplicationContext(), R.raw.gong);
+                break;
+        }
+
+        player.start();
     }
 
     @SuppressLint("SetTextI18n")
