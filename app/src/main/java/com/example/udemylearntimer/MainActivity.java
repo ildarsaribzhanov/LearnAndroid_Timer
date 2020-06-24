@@ -2,9 +2,11 @@ package com.example.udemylearntimer;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.preference.PreferenceManager;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.CountDownTimer;
@@ -19,7 +21,7 @@ import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
-    private static final int MAX_VALUE = 600;
+    private static final int MAX_VALUE = 60;
 
     MediaPlayer player;
     SeekBar timerLeftBar;
@@ -27,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
     TextView timerValueView;
     Integer timerVal = 30;
     CountDownTimer timer;
+    SharedPreferences preferences;
 
     public class MyCountDownTimer extends CountDownTimer {
         /**
@@ -49,7 +52,10 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         public void onFinish() {
-            player.start();
+            if (preferences.getBoolean("enable_sound", true)) {
+                player.start();
+            }
+
             stopTimer();
         }
     }
@@ -58,6 +64,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
 
         button = findViewById(R.id.startBtn);
         timerValueView = findViewById(R.id.timerValue);
@@ -146,7 +154,7 @@ public class MainActivity extends AppCompatActivity {
             selectedIntent = new Intent(this, SettingsActivity.class);
             startActivity(selectedIntent);
             return true;
-            
+
         } else if (id == R.id.action_about) {
             selectedIntent = new Intent(this, AboutActivity.class);
             startActivity(selectedIntent);
