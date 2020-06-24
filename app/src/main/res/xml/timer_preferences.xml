@@ -4,7 +4,7 @@
         android:defaultValue="true"
         android:key="enable_sound"
         android:title="Enable Sound"
-        android:summaryOff="Sound Disable"
-        android:summaryOn="Sound Enable"
+        android:summaryOff="Sound Disabled"
+        android:summaryOn="Sound Enabled"
         />
 </PreferenceScreen>
