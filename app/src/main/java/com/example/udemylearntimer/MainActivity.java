@@ -20,7 +20,7 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements SharedPreferences.OnSharedPreferenceChangeListener {
 
     private static final int MAX_VALUE = 60;
 
@@ -28,9 +28,18 @@ public class MainActivity extends AppCompatActivity {
     SeekBar timerLeftBar;
     Button button;
     TextView timerValueView;
-    Integer timerVal = 30;
+    Integer timerVal;
     CountDownTimer timer;
     SharedPreferences preferences;
+
+    @Override
+    public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
+        if (key.equals("timer_val")) {
+            timerVal = Integer.valueOf(preferences.getString("timer_val", "30"));
+            timerLeftBar.setProgress(timerVal);
+            viewTimerVal(timerVal);
+        }
+    }
 
     public class MyCountDownTimer extends CountDownTimer {
         /**
@@ -68,6 +77,8 @@ public class MainActivity extends AppCompatActivity {
 
         preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
 
+        timerVal = Integer.valueOf(preferences.getString("timer_val", "30"));
+
         button = findViewById(R.id.startBtn);
         timerValueView = findViewById(R.id.timerValue);
 
@@ -97,6 +108,14 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+
+        preferences.registerOnSharedPreferenceChangeListener(this);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        preferences.unregisterOnSharedPreferenceChangeListener(this);
     }
 
     void playEnd() {

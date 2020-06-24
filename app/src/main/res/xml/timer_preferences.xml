@@ -13,4 +13,9 @@
         android:title="End Timer Melody"
         android:entries="@array/preference_timer_sound_file_label"
         android:entryValues="@array/preference_timer_sound_file_vals"/>
+
+    <EditTextPreference
+        android:defaultValue="30"
+        android:key="timer_val"
+        android:title="Timer Default Interval"/>
 </PreferenceScreen>
